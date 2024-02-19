@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Immobilier</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="shortcut icon" href="./assets/house.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Immobilier</h1>
+        <nav class="site-nav">
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+          <ul class="nav-links">
+            <li><a href="./index.html">Immobilier</a></li>
+            <li><a href="./form.html">Formulaire</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <div class="form-wrapper">
+        <h2>Add Form</h2>
+        <form id="contact" action="" method="post">
+          <fieldset>
+            <input
+              placeholder="Title"
+              type="text"
+              tabindex="1"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <textarea
+              placeholder="Description"
+              tabindex="5"
+              required
+            ></textarea>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Price" type="number" tabindex="3" required />
+          </fieldset>
+          <fieldset>
+            <input
+              placeholder="Adress"
+              type="text"
+              tabindex="1"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              placeholder="Adress"
+              type="text"
+              tabindex="1"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              placeholder="Adress"
+              type="text"
+              tabindex="1"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              placeholder="Adress"
+              type="text"
+              tabindex="1"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <button
+              name="submit"
+              type="submit"
+              id="contact-submit"
+              data-submit="...Sending"
+            >
+              Submit
+            </button>
+          </fieldset>
+        </form>
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2024 My Site. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script/form.js"></script>
+  </body>
+</html>
