@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Immobilier</title>
+    <title>Space Home</title>
     <link rel="stylesheet" href="styles/style.css" />
-    <link rel="shortcut icon" href="./assets/house.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./assets/Icon.png" type="image/x-icon" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
-        <h1 class="site-title"><a href="./index.html">Immobilier</a></h1>
+        <img src="./assets/Icon.png">
+        <h1 class="site-title"><a href="./index.html">Space Home</a></h1>
         <nav class="site-nav">
           <div class="burger-menu">
             <div class="burger-line"></div>
@@ -18,8 +19,8 @@
             <div class="burger-line"></div>
           </div>
           <ul class="nav-links">
-            <li><a href="./index.html">Immobilier</a></li>
-            <li><a href="./form.html">Formulaire</a></li>
+            <li><a href="./index.html">Vaisseaux</a></li>
+            <li><a href="./form.html">Ajouts</a></li>
           </ul>
         </nav>
       </div>
@@ -28,85 +29,60 @@
     <main>
       <div class="form-container">
         <div class="form-wrapper">
-        <h2>Add Form</h2>
-        <form id="contact" action="" method="post">
-          <fieldset>
-            <p>Title</p>
-            <input
-              placeholder="Title"
-              type="text"
-              tabindex="1"
-              required
-              autofocus
-            />
+          <h2>Add Form</h2>
+          <form id="contact" action="" method="post">
+            
+            <fieldset>
+              <label for="title">Title</label>
+              <input
+                  placeholder="Title"
+                  type="text"
+                  id="title"
+                  name="title"
+                  tabindex="1"
+                  required
+                  autofocus
+              />
           </fieldset>
-          <fieldset>
-            <p>Description</p>
-            <textarea
-              placeholder="Description"
-              tabindex="5"
-              required
-            ></textarea>
-          </fieldset>
-          <fieldset>
-            <p>Price</p>
-            <input placeholder="Price" type="number" tabindex="3" required />
-          </fieldset>
-          <fieldset>
-            <p>Adress</p>
-            <input
-              placeholder="Adress"
-              type="text"
-              tabindex="1"
-              required
-              autofocus
-            />
-          </fieldset>
-          <fieldset>
+            <fieldset>
+              <label for="description">Description</label>
+              <textarea
+              name="description"
+                placeholder="Description"
+                tabindex="5"
+                required
+              ></textarea>
+            </fieldset>
+            <fieldset>
+              <label for="price">Price</label>
+              <input placeholder="Price" type="number" name="price" tabindex="3" required />
+            </fieldset>
+            <fieldset>
+              <label for="location">Location</label>
+              <input
+                placeholder="Location"
+                type="text"
+                tabindex="1"
+                name="location"
+                required
+                autofocus
+              />
+            </fieldset>
+            <fieldset>
+              <label for="type">Type de bien:</label>
+              <select id="type" name="type" required>
+                <option value="Rocket">Rocket</option>
+                <option value="SpaceShip">Space Ship</option>
+                <option value="SpaceStation">Space Station</option>
+              </select>
 
-            <p>Adress</p>
-            <input
-              placeholder="Adress"
-              type="text"
-              tabindex="1"
-              required
-              autofocus
-            />
-          </fieldset>
-          <fieldset>
-
-            <p>Adress</p>
-            <input
-              placeholder="Adress"
-              type="text"
-              tabindex="1"
-              required
-              autofocus
-            />
-          </fieldset>
-          <fieldset>
-
-            <p>Adress</p>
-            <input
-              placeholder="Adress"
-              type="text"
-              tabindex="1"
-              required
-              autofocus
-            />
-          </fieldset>
-          <fieldset>
-            <button
-              name="submit"
-              type="submit"
-              id="contact-submit"
-              data-submit="...Sending"
-            >
-              Submit
-            </button>
-          </fieldset>
-        </form>
-      </div>
+            </fieldset>
+            <div id="specifiques"></div>
+            <fieldset>
+              <button type="submit">submit</button>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </main>
 
@@ -116,6 +92,7 @@
       </div>
     </footer>
 
+    <script src="script/script.js"></script>
     <script src="script/form.js"></script>
   </body>
 </html>
