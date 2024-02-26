@@ -1,15 +1,11 @@
-const SpaceHouse = require('./SpaceHouse');
-
-class SpaceStation extends SpaceHouse {
-  constructor(id, titre, description, prix, adresse, nombreModules) {
-    super(id, titre, description, prix, adresse);
-    this.nombreModules = nombreModules;
+class SpaceStation extends SpaceProperty {
+  constructor(id, title, description, price, address, nombreModules) {
+      super(id, title, description, price, address);
+      this.nombreModules = nombreModules;
   }
 
   afficherDetails() {
-    super.afficherDetails();
-    console.log(`Nombre de modules: ${this.nombreModules}`);
+      super.afficherDetails();
+      console.log(`Nombre de modules: ${this.nombreModules}`);
   }
 }
-
-module.exports = SpaceStation;

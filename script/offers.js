@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const annonces = JSON.parse(localStorage.getItem('annonces')) || [];
+  const annonces = JSON.parse(localStorage.getItem('annonces')) || [];
+  const housingList = document.getElementById('housingList');
 
-    const housingList = document.getElementById('housingList');
-
-    annonces.forEach(annonce => {
+  annonces.forEach(annonce => {
       const housing = document.createElement('div');
       housing.classList.add('housing');
 
@@ -14,17 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
       housingImg.classList.add('housing-img');
 
       switch (annonce.type) {
-        case 'Rocket':
-          housingImg.src = './assets/rocket.jpeg';
-          break;
-        case 'SpaceShip':
-          housingImg.src = './assets/vaisseau.jpeg';
-          break;
-        case 'SpaceStation':
-          housingImg.src = './assets/station.jpg';
-          break;
-        default:
-          housingImg.src = './assets/default.jpg';
+          case 'Rocket':
+              housingImg.src = './assets/rocket.jpeg';
+              break;
+          case 'SpaceShip':
+              housingImg.src = './assets/vaisseau.jpeg';
+              break;
+          case 'SpaceStation':
+              housingImg.src = './assets/station.jpg';
+              break;
+          default:
+              housingImg.src = './assets/default.jpg';
       }
 
       housingHeader.appendChild(housingImg);
@@ -48,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
       address.textContent = annonce.adresse;
       housingContent.appendChild(address);
 
+      // Ajout des spécificités
       const specificities = document.createElement('p');
       specificities.textContent = annonce.specifiques;
       housingContent.appendChild(specificities);
@@ -56,5 +56,5 @@ document.addEventListener('DOMContentLoaded', function() {
       housing.appendChild(housingContent);
 
       housingList.appendChild(housing);
-    });
   });
+});
