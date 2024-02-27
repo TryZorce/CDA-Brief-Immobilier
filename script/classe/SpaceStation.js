@@ -8,4 +8,9 @@ class SpaceStation extends SpaceProperty {
       super.afficherDetails();
       console.log(`Nombre de modules: ${this.nombreModules}`);
   }
-}
+
+  saveSpecificValues() {
+    this.specificValues = {
+      nombreModules: this.nombreModules,
+    };
+}}

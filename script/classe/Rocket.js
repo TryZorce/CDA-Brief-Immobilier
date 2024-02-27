@@ -10,4 +10,12 @@ class Rocket extends SpaceProperty {
       console.log(`Réacteur: ${this.reacteur}`);
       console.log(`Compartiment Indépendant: ${this.compartimentIndep}`);
   }
+
+  saveSpecificValues() {
+    this.specificValues = {
+        reacteur: this.reacteur,
+        compartimentIndep: this.compartimentIndep
+    };
+}
+
 }

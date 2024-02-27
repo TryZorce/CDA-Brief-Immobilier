@@ -10,4 +10,11 @@ class SpaceShip extends SpaceProperty {
       console.log(`Compartiment: ${this.compartiment}`);
       console.log(`Ascenseur: ${this.ascenseur}`);
   }
+
+  saveSpecificValues() {
+    this.specificValues = {
+      compartiment: this.compartiment,
+      ascenseur: this.ascenseur
+    };
+}
 }
