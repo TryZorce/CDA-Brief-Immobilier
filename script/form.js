@@ -94,5 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Redirection vers la page principale
         window.location.href = './index.html';
+
+        
     });
+
+    
 });

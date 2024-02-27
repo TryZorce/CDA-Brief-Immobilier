@@ -1,60 +1,64 @@
-.form-container{
-    width: 99vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+@import url(style.css);
+
+.form-container {
+  width: 99vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.form-wrapper{
-    width: 80%;
+.form-wrapper {
+  width: 80%;
 }
 
 form {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 30px;
-    margin-bottom: 20px;
-  }
-  
-  fieldset {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    border: none;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  textarea {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
 
-  }
-  
-  textarea {
-    resize: vertical;
-    height: 100px;
-    width: 90%;
-  }
-  
-  button {
-    display: inline-block;
-    background-color: var(--main-color);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: var(--main-color);
-  }
+fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border: none;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: var(--black-color);
+  background-color: var(--white-color);
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+  width: 90%;
+}
+
+button {
+  display: inline-block;
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--main-color);
+}

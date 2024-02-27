@@ -10,7 +10,7 @@
   <body>
     <header class="site-header">
       <div class="container">
-        <img src="./assets/Icon.png">
+        <img src="./assets/Icon.png" />
         <h1 class="site-title"><a href="./index.html">Space Home</a></h1>
         <nav class="site-nav">
           <div class="burger-menu">
@@ -21,6 +21,7 @@
           <ul class="nav-links">
             <li><a href="./index.html">Ships</a></li>
             <li><a href="./form.html">Additions</a></li>
+            <li><a href="./admin.html">Admin</a></li>
           </ul>
         </nav>
       </div>
@@ -31,31 +32,33 @@
         <div class="form-wrapper">
           <h2>Add Form</h2>
           <form id="contact" action="" method="post">
-            
             <fieldset>
               <label for="title">Title</label>
               <input
-                  placeholder="Title"
-                  type="text"
-                  id="title"
-                  name="title"
-                  tabindex="1"
-                  required
-                  autofocus
+                placeholder="Title"
+                type="text"
+                id="title"
+                name="title"
+                tabindex="1"
+                required
+                autofocus
               />
-          </fieldset>
+            </fieldset>
+
             <fieldset>
               <label for="description">Description</label>
-              <textarea
-              name="description"
-                placeholder="Description"
-                tabindex="5"
-                required
-              ></textarea>
+              <textarea name="description" placeholder="Description" tabindex="5" required></textarea>
             </fieldset>
             <fieldset>
               <label for="price">Price</label>
-              <input placeholder="Price" type="number" name="price" tabindex="3" required />
+              <input
+                placeholder="Price"
+                type="number"
+                name="price"
+                tabindex="3"
+                required
+                min="0"
+              />
             </fieldset>
             <fieldset>
               <label for="location">Location</label>
@@ -76,7 +79,6 @@
                 <option value="SpaceShip">Space Ship</option>
                 <option value="SpaceStation">Space Station</option>
               </select>
-
             </fieldset>
             <div id="specifiques"></div>
             <fieldset>
