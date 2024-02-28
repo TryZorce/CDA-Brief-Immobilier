@@ -28,34 +28,23 @@
     </header>
 
     <main>
-      <form id="loginForm">
-        <label for="username">Nom d'utilisateur:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Mot de passe:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Se connecter</button>
-    </form>
+      <div class="housing-background"></div>
+      <div class="housing-container">
+        <div class="housing-wrapper">
+          <h2>List of Available Ships</h2>
+          <div id="housingList"></div>
+        </div>
+      </div>
     </main>
+
     <footer class="site-footer">
       <div class="container">
         <p>&copy; 2024 My Site. All rights reserved.</p>
       </div>
     </footer>
-  <script>
-     document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the form from submitting
 
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-
-        // Vérification des identifiants
-        if (username === "admin" && password === "root") {
-            alert("Connexion réussie !");
-            window.location.href = './index-remove.html';
-        } else {
-            alert("Identifiant ou mot de passe incorrect !");
-        }
-    });
-  </script>
+    <script src="script/offers-admin.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/form.js"></script>
     
 </html>
