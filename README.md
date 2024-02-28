@@ -3,7 +3,7 @@
 
 ## Brief 4 - Immobilier
 
-[Voir le site](https://github.com/TryZorce/CDA-Brief-Immobilier)
+[Voir le site](https://tryzorce.github.io/CDA-Brief-Immobilier/index.html)
 ### Commande à effectuer :
 
 ```shell
