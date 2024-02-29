@@ -29,6 +29,21 @@
 
     <main>
       <div class="housing-background"></div>
+      <form id="filterForm">
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option value="all">Tous</option>
+            <option value="Rocket">Rocket</option>
+            <option value="SpaceShip">SpaceShip</option>
+            <option value="SpaceStation">SpaceStation</option>
+        </select>
+
+        <label for="sort">Trier par prix:</label>
+        <select id="sort" name="sort">
+            <option value="asc">Croissant</option>
+            <option value="desc">Décroissant</option>
+        </select>
+    </form>
       <div class="housing-container">
         <div class="housing-wrapper">
           <h2>List of Available Ships</h2>

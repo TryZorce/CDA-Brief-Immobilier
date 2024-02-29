@@ -45,12 +45,11 @@
     <script src="script/script.js"></script>
   <script>
      document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the form from submitting
+        event.preventDefault();
 
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
 
-        // Vérification des identifiants
         if (username === "admin" && password === "root") {
             alert("Connexion réussie !");
             window.location.href = './index-remove.html';

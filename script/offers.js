@@ -1,72 +1,105 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Récupération des annonces depuis le stockage local
     const annonces = JSON.parse(localStorage.getItem('annonces')) || [];
     const housingList = document.getElementById('housingList');
+    const filterForm = document.getElementById('filterForm');
 
-    // Affichage des annonces dans la liste
-    annonces.forEach(annonce => {
-        const housing = document.createElement('div');
-        housing.classList.add('housing');
-
-        // Création de l'en-tête de l'annonce avec l'image appropriée (si disponible)
-        const housingHeader = document.createElement('div');
-        housingHeader.classList.add('housing-header');
-        const housingImg = document.createElement('img');
-        housingImg.classList.add('housing-img');
-
-        // Attribution de l'image appropriée en fonction du type de propriété
-        switch (annonce.type) {
-            case 'Rocket':
-                housingImg.src = './assets/rocket.jpeg';
-                break;
-            case 'SpaceShip':
-                housingImg.src = './assets/vaisseau.jpeg';
-                break;
-            case 'SpaceStation':
-                housingImg.src = './assets/station.jpg';
-                break;
-            default:
-                housingImg.src = './assets/default.jpg'; // Image par défaut
+    // Objet de mapping des clés des champs aux libellés correspondants
+    const fieldLabels = {
+        title: 'Titre',
+        description: 'Description',
+        price: 'Prix',
+        address: 'Adresse',
+        specificValues: {
+            compartimentIndep: 'Compartiment Indépendant',
+            reacteur: 'Reactor',
+            compartiment: 'Compartment',
+            ascenseur: 'Elevator',
+            nombreModules: 'Number of Modules'
+            // Ajoutez d'autres champs spécifiques si nécessaire
         }
+    };
 
-        // Ajout de l'image à l'en-tête de l'annonce
-        housingHeader.appendChild(housingImg);
+    function displayAnnonces(annonces) {
+        housingList.innerHTML = '';
 
-        // Création du contenu de l'annonce
-        const housingContent = document.createElement('div');
-        housingContent.classList.add('housing-content');
+        annonces.forEach(annonce => {
+            const housing = document.createElement('div');
+            housing.classList.add('housing');
 
-        // Ajout des détails de l'annonce
-        const title = document.createElement('p');
-        title.textContent = annonce.title;
-        housingContent.appendChild(title);
+            const housingHeader = document.createElement('div');
+            housingHeader.classList.add('housing-header');
+            const housingImg = document.createElement('img');
+            housingImg.classList.add('housing-img');
 
-        const description = document.createElement('p');
-        description.textContent = annonce.description;
-        housingContent.appendChild(description);
+            switch (annonce.type) {
+                case 'Rocket':
+                    housingImg.src = './assets/rocket.jpeg';
+                    break;
+                case 'SpaceShip':
+                    housingImg.src = './assets/vaisseau.jpeg';
+                    break;
+                case 'SpaceStation':
+                    housingImg.src = './assets/station.jpg';
+                    break;
+                default:
+                    housingImg.src = './assets/default.jpg';
+            }
 
-        const price = document.createElement('p');
-        price.textContent = annonce.price + '€';
-        housingContent.appendChild(price);
+            housingHeader.appendChild(housingImg);
 
-        const address = document.createElement('p');
-        address.textContent = annonce.address;
-        housingContent.appendChild(address);
+            const housingContent = document.createElement('div');
+            housingContent.classList.add('housing-content');
 
-        // Ajout des spécificités
-        if (annonce.specificValues) {
-            Object.entries(annonce.specificValues).forEach(([key, value]) => {
-                const spec = document.createElement('p');
-                spec.textContent = `${key}: ${value}`;
-                housingContent.appendChild(spec);
+            // Parcourir les champs de l'annonce et afficher le libellé et la valeur correspondants
+            Object.entries(annonce).forEach(([key, value]) => {
+                if (key !== 'specificValues') {
+                    const fieldLabel = fieldLabels[key];
+                    if (fieldLabel) {
+                        const fieldElement = document.createElement('p');
+                        fieldElement.classList.add('house-' + key);
+                        fieldElement.textContent = `${fieldLabel}: ${value}`;
+                        housingContent.appendChild(fieldElement);
+                    }
+                } else {
+                    // Si des valeurs spécifiques sont présentes, parcourir et afficher chacune
+                    const specificValuesLabel = fieldLabels.specificValues;
+                    Object.entries(value).forEach(([specKey, specValue]) => {
+                        const specLabel = specificValuesLabel[specKey];
+                        if (specLabel) {
+                            const specElement = document.createElement('p');
+                            specElement.classList.add('house-specific');
+                            specElement.textContent = `${specLabel}: ${specValue}`;
+                            housingContent.appendChild(specElement);
+                        }
+                    });
+                }
             });
+
+            housing.appendChild(housingHeader);
+            housing.appendChild(housingContent);
+
+            housingList.appendChild(housing);
+        });
+    }
+
+    function sortByPrice(annonces) {
+        return annonces.slice().sort((a, b) => a.price - b.price);
+    }
+
+    function filterByType(annonces, type) {
+        if (type === 'all') {
+            return annonces;
+        } else {
+            return annonces.filter(annonce => annonce.type === type);
         }
+    }
 
-        // Ajout de l'en-tête et du contenu à l'élément logement
-        housing.appendChild(housingHeader);
-        housing.appendChild(housingContent);
-
-        // Ajout de l'élément logement à la liste des logements
-        housingList.appendChild(housing);
+    filterForm.addEventListener('change', function() {
+        const selectedType = filterForm.type.value;
+        const sortedAnnonces = sortByPrice(annonces);
+        const filteredAnnonces = filterByType(sortedAnnonces, selectedType);
+        displayAnnonces(filteredAnnonces);
     });
+
+    displayAnnonces(annonces);
 });

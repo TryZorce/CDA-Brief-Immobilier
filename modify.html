@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Home</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="shortcut icon" href="./assets/Icon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <img src="./assets/Icon.png" />
+        <h1 class="site-title"><a href="./index.html">Space Home</a></h1>
+        <nav class="site-nav">
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+          <ul class="nav-links">
+            <li><a href="./index.html">Ships</a></li>
+            <li><a href="./form.html">Additions</a></li>
+            <li><a href="./admin.html">Admin</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <div class="form-wrapper">
+          <h2>Add Form</h2>
+          <form id="contact" action="" method="post">
+            <fieldset>
+              <label for="title">Title</label>
+              <input
+                placeholder="Title"
+                type="text"
+                id="title"
+                name="title"
+                tabindex="1"
+                required
+                autofocus
+              />
+            </fieldset>
+
+            <fieldset>
+              <label for="description">Description</label>
+              <textarea name="description" placeholder="Description" tabindex="5" required></textarea>
+            </fieldset>
+            <fieldset>
+              <label for="price">Price</label>
+              <input
+                placeholder="Price"
+                type="number"
+                name="price"
+                tabindex="3"
+                required
+                min="0"
+              />
+            </fieldset>
+            <fieldset>
+              <label for="location">Location</label>
+              <input
+                placeholder="Location"
+                type="text"
+                tabindex="1"
+                name="location"
+                required
+                autofocus
+              />
+            </fieldset>
+            <fieldset>
+              <label for="type">Type Of Ship</label>
+              <select id="type" name="type" required>
+                <option value="" disabled selected>Select the type</option>
+                <option value="Rocket">Rocket</option>
+                <option value="SpaceShip">Space Ship</option>
+                <option value="SpaceStation">Space Station</option>
+              </select>
+            </fieldset>
+            <div id="specifiques"></div>
+            <fieldset>
+              <button type="submit">submit</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2024 My Site. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script/offers.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/./classe/SpaceProperty.js"></script>
+    <script src="script/./classe/SpaceStation.js"></script>
+    <script src="script/./classe/SpaceShip.js"></script>
+    <script src="script/./classe/Rocket.js"></script>
+    <script src="script/modify.js"></script>
+  </body>
+</html>

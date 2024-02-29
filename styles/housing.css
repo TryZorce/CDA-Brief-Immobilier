@@ -39,6 +39,7 @@
 
 .housing-header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -47,14 +48,63 @@
 }
 
 .housing-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 50%;
 }
 
 .housing-img {
-    height: 100%;
+    display: flex; align-items: stretch;
+    max-height: 250px;
     max-width: 90%;
     object-fit: cover;
     object-position: center;
+}
+
+
+/* Style Dynamique */
+
+.house-title{
+    font-size: 1.5em;
+}
+
+.house-description{
+    font-size: 1em;
+
+}
+
+.house-price{
+    font-size: 1em;
+}
+
+.house-address{
+    font-size: 1em;
+    font-style: italic;
+}
+
+.house-specific{
+    font-size: 1em;
+}
+
+.modify-button , .delete-button{
+    margin: 5px 0px;
+    width: 150px;
+}
+#specifiques{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border: none;
+}
+
+#filterForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 @media screen and (min-width: 770px) {

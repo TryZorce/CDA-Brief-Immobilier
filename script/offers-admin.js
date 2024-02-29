@@ -62,6 +62,32 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        // Création des boutons Modifier et Supprimer
+        const modifyButton = document.createElement('button');
+        modifyButton.textContent = 'Modifier';
+        modifyButton.classList.add('modify-button');
+        modifyButton.addEventListener('click', function() {
+            // Action à effectuer lors du clic sur le bouton Modifier
+            // Redirection vers la page de modification avec l'ID de l'annonce
+            window.location.href = `./modify.html?id=${annonce.id}`;
+        });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Supprimer';
+        deleteButton.classList.add('delete-button');
+        deleteButton.addEventListener('click', function() {
+            // Action à effectuer lors du clic sur le bouton Supprimer
+            // Supprimer l'annonce de la liste et du stockage local
+            annonces.splice(annonces.indexOf(annonce), 1);
+            localStorage.setItem('annonces', JSON.stringify(annonces));
+            // Actualiser la page pour refléter les changements
+            window.location.reload();
+        });
+
+        // Ajout des boutons à l'en-tête de l'annonce
+        housingContent.appendChild(modifyButton);
+        housingContent.appendChild(deleteButton);
+
         // Ajout de l'en-tête et du contenu à l'élément logement
         housing.appendChild(housingHeader);
         housing.appendChild(housingContent);
