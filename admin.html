@@ -34,6 +34,7 @@
         <label for="password">Mot de passe:</label><br>
         <input type="password" id="password" name="password" required placeholder="mdp = root"><br><br>
         <button type="submit">Se connecter</button>
+        <button onclick="logout()">Déconnexion</button>
     </form>
     </main>
     <footer class="site-footer">
@@ -52,11 +53,16 @@
 
         if (username === "admin" && password === "root") {
             alert("Connexion réussie !");
-            window.location.href = './index-remove.html';
+            localStorage.setItem("LoggedIn", "true");
+            window.location.href = './index.html';
         } else {
             alert("Identifiant ou mot de passe incorrect !");
         }
     });
+
+    function logout() {
+        localStorage.removeItem("LoggedIn");
+        window.location.href = './index.html';
+    }
   </script>
-    
 </html>

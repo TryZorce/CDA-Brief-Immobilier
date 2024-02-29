@@ -104,9 +104,21 @@
 #filterForm{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
 }
 
+#filterForm > fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#filterForm > fieldset > select , input[type="number"] {
+    width: 100% !important;
+}
 @media screen and (min-width: 770px) {
 
     .housing {
@@ -128,4 +140,9 @@
     .housing-img {
         width: 100%;
     }
+
+#filterForm{
+    flex-direction: row;
+
+}
 }

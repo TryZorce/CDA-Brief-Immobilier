@@ -29,21 +29,36 @@
 
     <main>
       <div class="housing-background"></div>
+
+
       <form id="filterForm">
+        <fieldset>
         <label for="type">Type:</label>
         <select id="type" name="type">
-            <option value="all">Tous</option>
+            <option value="all">All</option>
             <option value="Rocket">Rocket</option>
             <option value="SpaceShip">SpaceShip</option>
             <option value="SpaceStation">SpaceStation</option>
         </select>
-
-        <label for="sort">Trier par prix:</label>
+      </fieldset>
+      <fieldset>
+        <label for="sort">Filter by Price</label>
         <select id="sort" name="sort">
-            <option value="asc">Croissant</option>
-            <option value="desc">Décroissant</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Decreasing</option>
         </select>
+      </fieldset>
+      <fieldset>
+        <label for="minPrice">Minimum Price</label>
+        <input type="number" id="minPrice" name="minPrice" min="0" step="any" placeholder="Minimum Price">
+      </fieldset>
+        <fieldset>
+        <label for="maxPrice">Maximum Price</label>
+        <input type="number" id="maxPrice" name="maxPrice" min="0" step="any" placeholder="Maximum Price">
+      </fieldset>
     </form>
+    
+
       <div class="housing-container">
         <div class="housing-wrapper">
           <h2>List of Available Ships</h2>
@@ -57,9 +72,7 @@
         <p>&copy; 2024 My Site. All rights reserved.</p>
       </div>
     </footer>
-
-    <script src="script/offers.js"></script>
     <script src="script/script.js"></script>
     <script src="script/form.js"></script>
-    
+    <script src="script/offers.js"></script>
 </html>

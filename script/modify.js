@@ -19,16 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Pré-sélectionner le type de propriété dans le formulaire
         document.getElementById('type').value = annonceToModify.type;
 
+        // Ajouter un gestionnaire d'événement pour le changement de type de propriété
+        document.getElementById('type').addEventListener('change', function () {
+            updateSpecificFields(this.value);
+        });
+
         // Mettre à jour les champs spécifiques en fonction du type de propriété
         updateSpecificFields(annonceToModify.type);
 
         // Pré-remplir les champs spécifiques avec les valeurs de l'annonce
         fillSpecificFields(annonceToModify);
-
-        // Ajouter un gestionnaire d'événement pour le changement de type de propriété
-        document.getElementById('type').addEventListener('change', function () {
-            updateSpecificFields(this.value);
-        });
 
         // Ajouter un gestionnaire d'événement pour la soumission du formulaire de modification
         document.getElementById('contact').addEventListener('submit', function (event) {
@@ -60,12 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateSpecificFields(type) {
     // Effacer les champs spécifiques précédents
-    document.getElementById('specifiques').innerHTML = '';
+    const specifiquesElement = document.getElementById('specifiques');
+    specifiquesElement.innerHTML = '';
 
     // Ajouter les champs spécifiques en fonction du type sélectionné
+    let specificFieldsHTML = '';
     switch (type) {
         case 'Rocket':
-            document.getElementById('specifiques').innerHTML = `
+            specificFieldsHTML = `
                 <label for="reacteur">Reactor:</label><br>
                 <input type="text" id="reacteur" name="reacteur" required><br>
                 <label for="compartimentIndep">Independent Compartment:</label><br>
@@ -73,7 +75,7 @@ function updateSpecificFields(type) {
             `;
             break;
         case 'SpaceShip':
-            document.getElementById('specifiques').innerHTML = `
+            specificFieldsHTML = `
                 <label for="compartiment">Compartment:</label><br>
                 <input type="text" id="compartiment" name="compartiment" required><br>
                 <label for="ascenseur">Elevator:</label><br>
@@ -81,7 +83,7 @@ function updateSpecificFields(type) {
             `;
             break;
         case 'SpaceStation':
-            document.getElementById('specifiques').innerHTML = `
+            specificFieldsHTML = `
                 <label for="nombreModules">Number of Modules:</label><br>
                 <input type="number" id="nombreModules" name="nombreModules" required><br>
             `;
@@ -90,21 +92,22 @@ function updateSpecificFields(type) {
             // Ne rien faire pour d'autres types
             break;
     }
+    specifiquesElement.innerHTML = specificFieldsHTML;
 }
 
 function fillSpecificFields(annonce) {
     // Remplir les champs spécifiques avec les valeurs de l'annonce
     switch (annonce.type) {
         case 'Rocket':
-            document.getElementById('reacteur').value = annonce.specificValues?.reactor || '';
-            document.getElementById('compartimentIndep').checked = annonce.specificValues?.independentCompartment || false;
+            document.getElementById('reacteur').value = annonce.specificValues?.reacteur || '';
+            document.getElementById('compartimentIndep').checked = annonce.specificValues?.compartimentIndep || false;
             break;
         case 'SpaceShip':
-            document.getElementById('compartiment').value = annonce.specificValues?.compartment || '';
-            document.getElementById('ascenseur').checked = annonce.specificValues?.elevator || false;
+            document.getElementById('compartiment').value = annonce.specificValues?.compartiment || '';
+            document.getElementById('ascenseur').checked = annonce.specificValues?.ascenseur || false;
             break;
         case 'SpaceStation':
-            document.getElementById('nombreModules').value = annonce.specificValues?.numberOfModules || '';
+            document.getElementById('nombreModules').value = annonce.specificValues?.nombreModules || '';
             break;
         default:
             // Ne rien faire pour d'autres types
@@ -112,24 +115,25 @@ function fillSpecificFields(annonce) {
     }
 }
 
+
 function updateSpecificValues(annonce) {
     // Mettre à jour les valeurs spécifiques en fonction du type de propriété
     switch (annonce.type) {
         case 'Rocket':
             annonce.specificValues = {
-                reactor: document.getElementById('reacteur').value,
-                independentCompartment: document.getElementById('compartimentIndep').checked
+                reacteur: document.getElementById('reacteur').value,
+                compartimentIndep: document.getElementById('compartimentIndep').checked
             };
             break;
         case 'SpaceShip':
             annonce.specificValues = {
-                compartment: document.getElementById('compartiment').value,
-                elevator: document.getElementById('ascenseur').checked
+                compartiment: document.getElementById('compartiment').value,
+                ascenseur: document.getElementById('ascenseur').checked
             };
             break;
         case 'SpaceStation':
             annonce.specificValues = {
-                numberOfModules: document.getElementById('nombreModules').value
+                nombreModules: document.getElementById('nombreModules').value
             };
             break;
         default:

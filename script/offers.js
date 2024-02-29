@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const annonces = JSON.parse(localStorage.getItem('annonces')) || [];
     const housingList = document.getElementById('housingList');
     const filterForm = document.getElementById('filterForm');
+    const isLoggedIn = localStorage.getItem('LoggedIn') === 'true';
 
-    // Objet de mapping des clés des champs aux libellés correspondants
     const fieldLabels = {
         title: 'Titre',
         description: 'Description',
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             compartiment: 'Compartment',
             ascenseur: 'Elevator',
             nombreModules: 'Number of Modules'
-            // Ajoutez d'autres champs spécifiques si nécessaire
         }
     };
 
@@ -50,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const housingContent = document.createElement('div');
             housingContent.classList.add('housing-content');
 
-            // Parcourir les champs de l'annonce et afficher le libellé et la valeur correspondants
             Object.entries(annonce).forEach(([key, value]) => {
                 if (key !== 'specificValues') {
                     const fieldLabel = fieldLabels[key];
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         housingContent.appendChild(fieldElement);
                     }
                 } else {
-                    // Si des valeurs spécifiques sont présentes, parcourir et afficher chacune
                     const specificValuesLabel = fieldLabels.specificValues;
                     Object.entries(value).forEach(([specKey, specValue]) => {
                         const specLabel = specificValuesLabel[specKey];
@@ -75,6 +72,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
+            if (isLoggedIn) {
+                const modifyButton = document.createElement('button');
+                modifyButton.textContent = 'Modifier';
+                modifyButton.classList.add('modify-button');
+                modifyButton.addEventListener('click', function() {
+                    window.location.href = `./modify.html?id=${annonce.id}`;
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Supprimer';
+                deleteButton.classList.add('delete-button');
+                deleteButton.addEventListener('click', function() {
+                    annonces.splice(annonces.indexOf(annonce), 1);
+                    localStorage.setItem('annonces', JSON.stringify(annonces));
+                    window.location.reload();
+                });
+
+                housingContent.appendChild(modifyButton);
+                housingContent.appendChild(deleteButton);
+            }
+
             housing.appendChild(housingHeader);
             housing.appendChild(housingContent);
 
@@ -82,24 +100,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function sortByPrice(annonces) {
-        return annonces.slice().sort((a, b) => a.price - b.price);
-    }
-
-    function filterByType(annonces, type) {
-        if (type === 'all') {
-            return annonces;
+    function sortByPrice(annonces, sortOrder) {
+        if (sortOrder === 'asc') {
+            return annonces.slice().sort((a, b) => a.price - b.price);
+        } else if (sortOrder === 'desc') {
+            return annonces.slice().sort((a, b) => b.price - a.price);
         } else {
-            return annonces.filter(annonce => annonce.type === type);
+            return annonces;
         }
     }
 
-    filterForm.addEventListener('change', function() {
+    function filterByType(annonces, type, minPrice, maxPrice) {
+        let filteredAnnonces = annonces;
+    
+        if (type !== 'all') {
+            filteredAnnonces = filteredAnnonces.filter(annonce => annonce.type === type);
+        }
+    
+        if (minPrice !== '') {
+            filteredAnnonces = filteredAnnonces.filter(annonce => annonce.price >= parseFloat(minPrice));
+        }
+    
+        if (maxPrice !== '') {
+            filteredAnnonces = filteredAnnonces.filter(annonce => annonce.price <= parseFloat(maxPrice));
+        }
+    
+        return filteredAnnonces;
+    }
+
+    filterForm.addEventListener('input', function() {
         const selectedType = filterForm.type.value;
-        const sortedAnnonces = sortByPrice(annonces);
-        const filteredAnnonces = filterByType(sortedAnnonces, selectedType);
+        const minPrice = filterForm.minPrice.value;
+        const maxPrice = filterForm.maxPrice.value;
+        const sortOrder = filterForm.sort.value;
+        const sortedAnnonces = sortByPrice(annonces, sortOrder);
+        const filteredAnnonces = filterByType(sortedAnnonces, selectedType, minPrice, maxPrice);
         displayAnnonces(filteredAnnonces);
-    });
+    });    
 
     displayAnnonces(annonces);
 });
